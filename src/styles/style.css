@@ -1,0 +1,124 @@
+@font-face {
+  font-family: 'PixelFont';
+  src: url("/fonts/3572.ttf") format("truetype"),
+  url("/fonts/12345.woff") format("woff");
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-repeat: no-repeat;
+}
+
+button, html, body, input {
+  font-size: 1em;
+  font-family: "PixelFont", sans-serif;
+  font-weight: bold;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+}
+
+.form {
+  background: white;
+  position: relative;
+  display: block;
+  width: 400px;
+  padding: 30px 30px;
+
+}
+
+.form > h1 {
+  color: #f06292;
+
+}
+
+.form input, button {
+
+  box-shadow: none;
+  width: 100%;
+  margin: 5px auto;
+  height: 50px;
+  box-sizing: border-box;
+
+}
+
+.form button {
+  background: #f06292;
+  border: none;
+  color: white;
+
+}
+
+.form input {
+
+  z-index: 1;
+  font-weight: normal;
+  background: inherit;
+  border: none;
+  border-bottom: 2px solid;
+  transition: border-bottom-color 0.3s ease-in-out;
+}
+
+.form > a {
+  color: #f06292;
+  font-weight: normal !important;
+}
+
+a:hover {
+  cursor: pointer;
+
+}
+
+.floating-label {
+
+  width: 100%;
+  color: gray;
+  position: absolute;
+  pointer-events: none;
+  top: 25px;
+  left: 0;
+  bottom: auto;
+  transition: 0.3s ease all;
+  font-weight: normal !important;
+  z-index: 2;
+}
+
+
+input:focus ~ .floating-label,
+input:valid ~ .floating-label {
+  top: 0;
+  font-size: 0.7em;
+  color: #f06292;
+}
+
+.form>div{
+  position: relative;
+  line-height: 1em;
+}
+
+input:focus,
+input:valid {
+  outline:0;
+  border-color: #f06292 !important;
+}
+
+
+
+.anim-enter-active, .anim-leave-active {
+  transition: opacity .2s;
+}
+
+.anim-enter, .anim-leave-to, .on_appear {
+  opacity: 0;
+}
+.on_appear_to, .on_appear_active{
+  transition: opacity .4s;
+}
