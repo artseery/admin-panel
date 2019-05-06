@@ -4,7 +4,7 @@
   url("/fonts/12345.woff") format("woff");
 }
 
-html, body {
+html, body, .app {
   height: 100%;
   width: 100%;
   padding: 0;
@@ -12,10 +12,9 @@ html, body {
   background-repeat: no-repeat;
 }
 
-button, html, body, input {
+button, input, body, td, html {
   font-size: 1em;
   font-family: "PixelFont", sans-serif;
-  font-weight: bold;
 }
 
 .form-wrapper {
@@ -23,7 +22,6 @@ button, html, body, input {
   align-items: center;
   justify-content: center;
   height: 100%;
-
 }
 
 .form {
@@ -32,19 +30,19 @@ button, html, body, input {
   display: block;
   width: 400px;
   padding: 30px 30px;
-
 }
 
 .form > h1 {
   color: #f06292;
+  margin: 10px 0;
 
 }
 
-.form input, button {
+.form input, .form button {
 
   box-shadow: none;
   width: 100%;
-  margin: 5px auto;
+  margin: 10px 0 0 0;
   height: 50px;
   box-sizing: border-box;
 
@@ -60,7 +58,6 @@ button, html, body, input {
 .form input {
 
   z-index: 1;
-  font-weight: normal;
   background: inherit;
   border: none;
   border-bottom: 2px solid;
@@ -91,34 +88,184 @@ a:hover {
   z-index: 2;
 }
 
-
-input:focus ~ .floating-label,
-input:valid ~ .floating-label {
+.form input:focus ~ .floating-label,
+.form input:valid ~ .floating-label {
   top: 0;
   font-size: 0.7em;
   color: #f06292;
 }
 
-.form>div{
+.form > div {
   position: relative;
   line-height: 1em;
 }
 
-input:focus,
-input:valid {
-  outline:0;
+.form input:focus,
+.form input:valid {
+  outline: 0;
   border-color: #f06292 !important;
 }
-
+button::-moz-focus-inner {
+  border: 0;
+}
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #ECEFF1;
+  font-weight: bold;
+}
+.menu_nav {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  position: relative;
+  background: #f06292;
+  width: 100%;
+  height: 60px;
+}
+.menu_button{
+  color: white;
+  background: #f06292;
+  border: none;
+  border-right: 1px solid black;
+  width: 100%;
+}
+.menu_button:last-child{
+  border-right: none !important;
+}
 
 
 .anim-enter-active, .anim-leave-active {
   transition: opacity .2s;
 }
 
-.anim-enter, .anim-leave-to, .on_appear {
+.anim-enter, .on_appear, .anim-leave-to {
   opacity: 0;
 }
-.on_appear_to, .on_appear_active{
-  transition: opacity .4s;
+
+.on_appear_to, .on_appear_active {
+  transition: opacity .8s;
+}
+.list-item{
+  border-top: 1px solid lightgray;
+  text-align: center;
+  background-color: white;
+}
+.list-item > img{
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+}
+canvas{
+  width: 100%;
+  height: calc(100% - 60px);
+}
+#error{
+  display: none;
+  padding-top: 10px;
+  text-align: center;
+  color: #ff0033;
+  font-weight: normal;
+}
+.table_component{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+table{
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.table_component{
+  width: 100%;
+  height: 100%;
+}
+thead, thead td{
+  color: white;
+  background-color: #f06292;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+td{
+  padding: 5px 10px;
+  border-right: 2px solid #ECEFF1;
+}
+td:last-child{
+  border-right: none !important;
+}
+tr{
+  height: 50px;
+  border-bottom: 2px solid #ECEFF1;
+}
+tbody tr:last-child{
+  border-bottom: none !important;
+}
+tr:nth-child(2n) {background: #abf6d9}
+tbody{
+  background-color: #62f0c1;
+  font-weight: normal;
+}
+.arrow {
+  position: relative;
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  background-size: 11px, 11px !important;
+}
+.arrow.asc {
+  background: url("../assets/sort-down.svg");
+}
+.arrow.dsc {
+  background: url("../assets/sort-up.svg");
+}
+.arrow.default{
+  background: url("../assets/sort-default.svg");
+}
+.flip-row-item{
+  transition: all 1s;
+}
+.flip-row-enter, .flip-row-leave-to{
+  opacity: 0;
+}
+.flip-row-leave-active{
+  display: none;
+}
+.search_wrapper>input{
+  border: solid 2px #62f0c1;
+  transition: border .5s ease-in-out;
+  position: relative;
+  padding: 0;
+  width: 100%;
+  height: 25px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+.search_wrapper>input:focus{
+  border: solid 2px #f06292;
+
+}
+.search_icon{
+  display: inline-block;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  background-size: 25px, 25px !important;
+  background: url("../assets/search.svg");
+}
+.search_wrapper{
+  display: flex;
+  width: 100%;
 }

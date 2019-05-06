@@ -1,13 +1,29 @@
 <template>
-    <div>Hello</div>
+    <MenuComponent></MenuComponent>
 </template>
 
 <script>
-    export default {
-        name: "home"
-    }
+  import 'simplebar'; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
+  import 'simplebar/dist/simplebar.css';
+  import $ from 'jquery';
+  import MenuComponent from './menu_tables_component.vue';
+
+
+
+  export default {
+    components: {
+      MenuComponent,
+    },
+    name: "home",
+    data() {
+      return {
+        currentTabComponent: 0
+      };
+    },
+  };
 </script>
 
-<style scoped>
+<style>
 
+  @import "styles/style.css";
 </style>
