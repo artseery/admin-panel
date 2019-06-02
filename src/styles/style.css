@@ -14,7 +14,8 @@ html, body, .app {
 
 button, input, body, td, html {
   font-size: 1em;
-  font-family: "PixelFont", sans-serif;
+  font-family: "Roboto", sans-serif;
+  outline: none;
 }
 
 .form-wrapper {
@@ -22,6 +23,8 @@ button, input, body, td, html {
   align-items: center;
   justify-content: center;
   height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form {
@@ -30,6 +33,9 @@ button, input, body, td, html {
   display: block;
   width: 400px;
   padding: 30px 30px;
+}
+#login{
+  font-weight: bold;
 }
 
 .form > h1 {
@@ -56,7 +62,6 @@ button, input, body, td, html {
 }
 
 .form input {
-
   z-index: 1;
   background: inherit;
   border: none;
@@ -67,6 +72,9 @@ button, input, body, td, html {
 .form > a {
   color: #f06292;
   font-weight: normal !important;
+}
+.form div{
+  margin-top: 5px;
 }
 
 a:hover {
@@ -111,31 +119,42 @@ button::-moz-focus-inner {
 .page-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  overflow: hidden;
   width: 100%;
+  min-height: 100%;
   background-color: #ECEFF1;
-  font-weight: bold;
+}
+body{
+  overflow: hidden;
 }
 .menu_nav {
   display: flex;
+  position: relative;
   flex-direction: row;
   text-align: center;
-  position: relative;
-  background: #f06292;
   width: 100%;
   height: 60px;
+  box-shadow: 0 0 3px lightgray;
 }
 .menu_button{
-  color: white;
-  background: #f06292;
+  white-space: nowrap;
+  color: black;
+  background: white;
   border: none;
-  border-right: 1px solid black;
+  padding: 0;
   width: 100%;
+  display: block;
+  box-sizing: border-box;
 }
+.menu_button:active{
+  border: none;
+  padding-left: 0px;
+  outline: none;
+}
+
 .menu_button:last-child{
   border-right: none !important;
 }
-
 
 .anim-enter-active, .anim-leave-active {
   transition: opacity .2s;
@@ -160,10 +179,6 @@ button::-moz-focus-inner {
   height: 100%;
 
 }
-canvas{
-  width: 100%;
-  height: calc(100% - 60px);
-}
 #error{
   display: none;
   padding-top: 10px;
@@ -175,7 +190,7 @@ canvas{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 20px;
   position: relative;
   width: 100%;
   height: 100%;
@@ -183,14 +198,24 @@ canvas{
 table{
   border-spacing: 0;
   border-collapse: collapse;
+  box-shadow: 0 0 3px lightgray;
+  max-width: 100%;
+  display: block;
+  box-sizing: border-box;
+  table-layout: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 80vh;
+
 }
-.table_component{
-  width: 100%;
-  height: 100%;
-}
-thead, thead td{
-  color: white;
-  background-color: #f06292;
+
+
+
+thead, thead td, th{
+  text-align: left;
+  color: black;
+  font-weight: bold;
+  background-color: white;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -199,24 +224,42 @@ thead, thead td{
   -o-user-select: none;
   user-select: none;
 }
-td{
-  padding: 5px 10px;
-  border-right: 2px solid #ECEFF1;
+td, th{
+  padding: 0 10px;
+  min-width: 120px;
+}
+th>span{
+  display: inline-block;
 }
 td:last-child{
   border-right: none !important;
 }
-tr{
+th{
+  white-space: nowrap;
+}
+th, td{
   height: 50px;
-  border-bottom: 2px solid #ECEFF1;
+}
+thead tr:first-child{
+  text-transform: capitalize;
+  border-bottom: 2px solid #f06292;
 }
 tbody tr:last-child{
   border-bottom: none !important;
 }
-tr:nth-child(2n) {background: #abf6d9}
+tr:nth-child(2n) {background: white}
 tbody{
-  background-color: #62f0c1;
+  background-color: #f6f6f6;
   font-weight: normal;
+}
+table tr{
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.table_wrapper{
+  max-width: 90%;
+  max-height:  50%;
+  box-sizing: border-box;
 }
 .arrow {
   position: relative;
@@ -244,17 +287,20 @@ tbody{
   display: none;
 }
 .search_wrapper>input{
-  border: solid 2px #62f0c1;
-  transition: border .5s ease-in-out;
+  background: white url("../assets/search.svg") no-repeat scroll center right 5px;
+  background-size: 15px 15px;
+  border-radius: 30px;
+  border: solid 1px #c2c2c2;
+  transition: border .3s ease-in-out;
   position: relative;
-  padding: 0;
-  width: 100%;
+  padding: 0 25px 0 10px;
   height: 25px;
   box-sizing: border-box;
-  margin-bottom: 5px;
+  max-width: 150px;
 }
+
 .search_wrapper>input:focus{
-  border: solid 2px #f06292;
+  border: solid 1px #f06292;
 
 }
 .search_icon{
@@ -267,5 +313,181 @@ tbody{
 }
 .search_wrapper{
   display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.menu_content_wrapper::before{
+  display: block;
+  bottom: 0;
+  content: "";
+  background-color: #f06292;
+  height: 2px;
+  left: 50%;
+  width: 0;
+  position: absolute;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  -webkit-transition: width .3s ease-in-out;
+  -moz--transition: width .3s ease-in-out;
+  transition: width .3s ease-in-out;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.router-link-active .menu_content_wrapper::before{
   width: 100%;
 }
+.router-link-active{
+  color: #f06292;
+  transition: all .3s ease-in-out;
+}
+.menu_button .menu_content_wrapper{
+  position: relative;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.switch-btn {
+  width: 50px; /* ширина переключателя */
+  height: 26px; /* высота переключателя */
+  border-radius: 80px; /* радиус скругления */
+  background: #c2c2c2; /* цвет фона */
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms; /* анимация */
+}
+.switch-on {
+  background: #f06292;
+}
+
+.switch-btn input{
+  opacity: 0;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.knobs{
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.knobs::before{
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  background-color: white;
+  border-radius: 50%;
+  transition: .2s all ease-out;
+}
+.switch-on>.knobs::before{
+  left: 27px;
+}
+.action_button{
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.plus{
+  width: 20px;
+  height: 20px;
+  fill: #f06292;
+  transition: fill .2s ease-in-out;
+}
+.edit{
+  width: 25px;
+  height: 25px;
+  fill: black;
+  transition: fill .2s ease-in-out;
+}
+.edit:hover{
+  fill: #f06292;
+}
+.key{
+  width: 25px;
+  height: 25px;
+  fill: black;
+  transition: fill .2s ease-in-out;
+}
+.key:hover{
+  fill: #f06292;
+}
+.create-button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  color: #f06292;
+  border: 1px solid #f06292;
+  padding: 0 8px;
+  border-radius: 20px;
+  margin-right: 5px;
+  transition: all .3s;
+}
+.create-button:hover{
+  color: white;
+  background-color: #f06292;
+}
+.actions-block-wrapper{
+  display: inline-block;
+}
+.actions-block-wrapper>div{
+  display: inline-block;
+}
+
+.table_anim-enter, .table_anim-leave-to, .table_anim-leave-active {
+  height: 0;
+}
+.table_anim-enter-to, .table_anim-leave{
+}
+
+.table_anim-enter-active, .table_anim-leave-active{
+  transition: height .0s;
+}
+
+.fade-enter, .fade-leave-to, .fade-leave-active{
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave{
+  opacity: 1;
+}
+.fade-enter-active, .fade-leave-active{
+  transition: opacity .2s;
+}
+
+.fade-table-enter, .fade-table-leave-to, .fade-table-leave-active{
+  opacity: 0;
+}
+.fade-table-enter-to, .fade-table-leave{
+  opacity: 1;
+}
+.fade-table-enter-active, .fade-table-leave-active{
+  transition: opacity .7s;
+}
+
+

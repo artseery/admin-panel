@@ -2,40 +2,47 @@ import Vue from 'vue'
 import App from './App.vue'
 import Router from 'vue-router'
 import Auth from './Auth.vue'
-import Home from './home.vue'
+import MenuTables from './menu_tables_component'
+import Table from './table_component'
 import axios from 'axios';
 import {url} from './http-common.js';
 
 Vue.use(Router);
 
-
 const router = new Router({
   routes: [
     {
-      path: '/',
-      component: App,
+      path: '*',
       redirect: '/auth',
+    },
+    {
+      path: '/auth',
+      component: Auth,
+    },
+    {
+      path: '/tables',
+      name: 'table_menu',
+      component: MenuTables,
       children: [
+
         {
-          path: '/auth',
-          component: Auth,
+          path: '/tables/:table_name',
+          name: 'table',
+          component: Table,
+          props: true
         },
-        {
-          path: '/home',
-          component: Home
-        }
       ]
     }
   ]
 });
 router.beforeEach((to, from, next) => {
-  axios.get(url + 'checksession', {withCredentials:true}).then(response => {
+  axios.get(url + 'checksession', {withCredentials: true}).then(response => {
     if (response.data) {
       if (to.path === '/auth' && from.path !== '/auth' && from.path !== '/') {
         next(false);
       }
       else if ((to.path === '/auth' && from.path === '/auth') || (from.path === '/' && to.path === '/auth'))
-        next({path: '/home', replace: true});
+        next({path: '/tables', replace: true});
       else
         next();
     }

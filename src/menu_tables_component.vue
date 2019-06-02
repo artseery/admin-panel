@@ -1,12 +1,17 @@
 <template>
   <div class="page-wrapper">
     <nav class="menu_nav">
-      <button class="menu_button" :key="table.table_name" :id="table.table_name" v-for="table in tables"
-              v-on:click="current_table = table.table_name">
-        {{ table.table_name}}
-      </button>
+      <router-link :to="{name: 'table', params: {table_name: table.table_name}}" tag="button" class="menu_button"
+                   :key="table.table_name" :id="table.table_name" v-for="table in tables" @click="get_tables">
+        <div class="menu_content_wrapper">{{ table.table_name | capitalize_clean }}</div>
+      </router-link>
+      <button class="menu_button" @click="exit">Exit</button>
     </nav>
-    <table-component :current_table="current_table"></table-component>
+    <transition name="fade-table">
+      <keep-alive>
+        <router-view @update_menu = "get_tables"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -14,6 +19,7 @@
   import axios from 'axios';
   import {url} from './http-common.js';
   import TableComponent from './table_component';
+  import router from './main.js'
 
   export default {
     name: "menu_component",
@@ -24,18 +30,45 @@
       return {
         tables: null,
         test: null,
-        current_table: null
       }
     },
-
+    filters: {
+      capitalize_clean: function (value) {
+        if (!value) return '';
+        value = value.toString().replace('_', ' ');
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    },
+    watch:
+      {
+        '$route': function () {
+          if (this.$route.name === 'table_menu') {
+            router.push('/tables/' + this.tables[0].table_name)
+          }
+        }
+      },
     mounted: function () {
       axios.get(url + 'tables', {withCredentials: true}).then(response => {
         this.tables = response.data;
-        this.current_table = response.data[0].table_name;
-        console.log(this.tables);
+        router.push('/tables/' + this.tables[0].table_name);
       })
+
     },
-    methods: {}
+    methods: {
+      exit: function () {
+        axios.get(url + 'destroysession', {withCredentials: true}).then(response => {
+            console.log(response);
+            router.push('auth')
+          }
+        );
+      },
+      get_tables:function () {
+        axios.get(url + 'tables', {withCredentials: true}).then(response => {
+          this.tables = response.data;
+        })
+      }
+
+    }
   }
 </script>
 

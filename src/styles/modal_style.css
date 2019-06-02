@@ -1,0 +1,183 @@
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .2);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 350px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  transition: all .3s ease;
+}
+.modal-container, select{
+  font-size: 1em;
+  font-family: "Roboto", sans-serif;
+}
+.modal-footer{
+  width: 100%;
+  height: 100%;
+}
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  background: none;
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: white;
+}
+.modal-default-button>svg{
+  width: 100%;
+  height: 100%
+}
+.cross{
+  fill: #e13520;
+  float: right;
+}
+.checkmark{
+  float: right;
+  fill: #00df96;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.form-body>label{
+  font-size: 0.8em;
+}
+.modal-body>div{
+  padding: 5px 0 5px 0;
+}
+.modal-header{
+  font-size: 1.3em;
+  color: #f06292;
+  padding: 15px 0 5px 0;
+}
+.form-body>input{
+  border: none;
+  border-bottom: 2px solid gray;
+  width: 100%;
+  position: relative;
+  padding: 5px 0 5px 0;
+  transition: border-bottom-color .3s linear;
+}
+.form-body>select{
+  border: none;
+  border-bottom: 2px solid gray;
+  width: 100%;
+  position: relative;
+  padding: 5px 0 5px 0;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-size: .65em auto, 100%;
+  transition: border-bottom-color .3s linear;
+}
+.form-body>input:focus, .form-body>select:focus{
+  border-bottom: 2px solid #f06292;
+}
+#edit-error{
+  display: none;
+  color: red;
+}
+table{
+  border: none;
+  box-shadow: none;
+}
+.rights-block-wrapper{
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+}
+.rights-block-wrapper td{
+  padding:0;
+  min-width: initial;
+}
+.rights-block{
+  width: auto;
+  padding: 0 10px !important;
+}
+.rights-block div{
+  display: inline-block;
+  margin: 5px 0 5px 0
+}
+.rights-block div>button{
+  width: 55px;
+}
+.trigger_button{
+  border: 1px solid #f06292;
+  padding: 4px;
+  margin-right: 5px;
+  color: #f06292;
+  background: none;
+  transition: all .2s ease-out;
+}
+.trigger_button.active{
+  color: white;
+  background: #f06292;
+}
+
+
+
+
+
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+
+

@@ -1,20 +1,19 @@
 <template>
-
-  <div class="form-wrapper" id="form-wrapper">
+  <div class="form-wrapper" id="form-wrapper" key="auth_page">
     <transition name="anim" mode="out-in">
-      <div class="form" key="login" v-on:keyup.enter="login">
+      <form class="form" key="login" v-on:keyup.enter="login">
         <h1>Вход</h1>
         <div>
-          <input type="text" v-model="user.login" required>
+          <input type="text" v-model="user.login" tabindex="1" required>
           <span class="floating-label">Логин</span>
         </div>
         <div>
-          <input type="password" v-model="user.password" required>
+          <input id="password" type="password" v-model="user.password" tabindex="2" required>
           <span class="floating-label">Пароль</span>
         </div>
         <button id="login" v-on:click="login">Войти</button>
-        <div id="error">Введен неверный логин или пароль</div>
-      </div>
+        <div id="error">{{error_text}}</div>
+      </form>
     </transition>
   </div>
 </template>
@@ -33,6 +32,7 @@
         button_text: '',
         errors: [],
         auth_data: {},
+        error_text: 'Введен неверный логин или пароль',
         user: {
           login: '',
           password: ''
@@ -55,6 +55,7 @@
       },
       send_data: function () {
         console.log(this.auth_data);
+        let self = this;
         axios({
           url: url + 'auth',
           crossdomain: true,
@@ -65,17 +66,23 @@
         })
           .then(function (response) {
             console.log(response.data);
-            if (response.data === "success") {
-              router.push('home');
-            }
-            if (response.data === "error") {
-              document.getElementById('error').style.display='block';
+            if (response.status === 200&&response.data=== 'success') {
+              router.push('tables');
             }
             else
               console.log('Server error');
           })
           .catch(function (error) {
             console.log(error);
+            if (error.response.status === 401) {
+              self.error_text='Введен неверный логин или пароль'
+              document.getElementById('error').style.display='block';
+            }
+            if(error.response.status === 402){
+              self.error_text='Ваш аккаунт отключён'
+              document.getElementById('error').style.display='block';
+
+            }
           })
           .catch(e => {
             this.errors.push(e);
