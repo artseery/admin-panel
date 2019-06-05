@@ -77,7 +77,7 @@
   import 'simplebar-vue';
   import 'simplebar/dist/simplebar.css';
 
-  let orderBy = require('lodash.orderby');
+  const _ = require('lodash');
 
   export default {
     components: {edit_button, modal, key_button},
@@ -111,12 +111,11 @@
     },
     computed: {
       orderTable: function () {
-        this.orderedTable = orderBy(this.table, this.sortKey, this.orderSort);
+        this.orderedTable = _.orderBy(this.table, this.sortKey, this.orderSort);
         //Поиск по таблице
         if (this.searchQuery) {
           let searchQuery = this.searchQuery.toLowerCase();
-          this.orderedTable = this.orderedTable.filter(row => Object.values(row).some(elem => elem.toString().toLowerCase().includes(searchQuery)))
-          //this.orderedTable = this.orderedTable.filter(row => row['name'].toString().toLowerCase().includes(searchQuery)) Фильтр по имени
+          this.orderedTable = this.orderedTable.filter(row => Object.values(row).some(elem => elem!==null&&elem.toString().toLowerCase().includes(searchQuery)))//Фильтр ищет по пустому id
         }
         this.orderedTableCopy = JSON.parse(JSON.stringify(this.orderedTable));
         return this.orderedTable;
