@@ -70,9 +70,9 @@
   import axios from 'axios';
   import {url} from './http-common.js';
   import router from "./main";
-  import edit_button from './edit_button';
-  import modal from './modal';
-  import key_button from './key_button'
+  import edit_button from './EditButton';
+  import modal from './Modal';
+  import key_button from './KeyButton'
   import md5 from 'md5';
   import 'simplebar-vue';
   import 'simplebar/dist/simplebar.css';
@@ -356,6 +356,7 @@
     }
 
   }
+
 </script>
 
 <style scoped>

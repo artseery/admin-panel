@@ -18,7 +18,7 @@
 <script>
   import axios from 'axios';
   import {url} from './http-common.js';
-  import TableComponent from './table_component';
+  import TableComponent from './TableComponent';
   import router from './main.js'
 
   export default {

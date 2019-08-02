@@ -2,8 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import Router from 'vue-router'
 import Auth from './Auth.vue'
-import MenuTables from './menu_tables_component'
-import Table from './table_component'
+import MenuTables from './MenuTablesComponent'
+import Table from './TableComponent'
 import axios from 'axios';
 import {url} from './http-common.js';
 

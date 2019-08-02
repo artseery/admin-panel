@@ -204,7 +204,7 @@ table{
   box-sizing: border-box;
   table-layout: fixed;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   max-height: 80vh;
 
 }
@@ -463,11 +463,9 @@ table tr{
 }
 .table_anim-enter-to, .table_anim-leave{
 }
-
 .table_anim-enter-active, .table_anim-leave-active{
   transition: height .0s;
 }
-
 .fade-enter, .fade-leave-to, .fade-leave-active{
   opacity: 0;
 }
@@ -477,7 +475,6 @@ table tr{
 .fade-enter-active, .fade-leave-active{
   transition: opacity .2s;
 }
-
 .fade-table-enter, .fade-table-leave-to, .fade-table-leave-active{
   opacity: 0;
 }

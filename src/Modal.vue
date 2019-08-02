@@ -24,12 +24,9 @@
               <div v-if="action=='edit'&&label_key !=='enabled'&&label_key !== 'id'" v-for="(element, label_key) in row"
                    class="form-body" :key="label_key">
                 <label>{{label_key | capitalize}}</label>
-                <select v-if="Object.keys(columns.possible_values[0])[0]==label_key" class="select"
-                        v-model="row[label_key]">
+                <select v-if="Object.keys(columns.possible_values[0])[0]==label_key" class="select" v-model="row[label_key]">
                   <option>{{null}}</option>
-                  <option v-for="elements in columns.possible_values" :selected="Object.values(elements)[0]===element"
-                          :value="Object.values(elements)[0]">{{Object.values(elements)[0]}}
-                  </option>
+                  <option v-for="elements in columns.possible_values">{{Object.values(elements)[0]}}</option>
                 </select>
                 <input v-model="row[label_key]" v-else>
               </div>

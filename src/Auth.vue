@@ -67,7 +67,7 @@
           .then(function (response) {
             console.log(response.data);
             if (response.status === 200&&response.data=== 'success') {
-              router.push('tables');
+              self.$router.push('tables');
             }
             else
               console.log('Server error');
