@@ -1,18 +1,8 @@
-# vue-spa
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Admin panel
+## First project
+Login screen
+![Alt text](https://i.imgur.com/YeW2ItT.png)
+Data from DB
+![Alt text](https://i.imgur.com/83OxU8b.png)
+Work with rights
+![Alt text](https://i.imgur.com/t0fiowk.png)
